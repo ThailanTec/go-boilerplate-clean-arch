@@ -2,7 +2,7 @@ package handler
 
 import (
 	"github.com/ThailanTec/challenger/pousada/domain"
-	"github.com/ThailanTec/challenger/pousada/usecases"
+	"github.com/ThailanTec/challenger/pousada/src/usecases"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )

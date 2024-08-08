@@ -2,7 +2,7 @@ package usecases
 
 import (
 	"github.com/ThailanTec/challenger/pousada/domain"
-	"github.com/ThailanTec/challenger/pousada/repositories"
+	"github.com/ThailanTec/challenger/pousada/infra/repositories"
 )
 
 type UserUsecase interface {

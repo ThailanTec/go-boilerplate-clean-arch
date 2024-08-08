@@ -1,10 +1,10 @@
 package main
 
 import (
-	"github.com/ThailanTec/challenger/pousada/config"
-	"github.com/ThailanTec/challenger/pousada/database"
-	"github.com/ThailanTec/challenger/pousada/database/migrations"
-	"github.com/ThailanTec/challenger/pousada/routes"
+	"github.com/ThailanTec/challenger/pousada/infra/database"
+	"github.com/ThailanTec/challenger/pousada/infra/database/migrations"
+	"github.com/ThailanTec/challenger/pousada/src/config"
+	"github.com/ThailanTec/challenger/pousada/src/routes"
 	"github.com/gin-gonic/gin"
 	"log"
 	"os"
@@ -35,5 +35,6 @@ func main() {
 	if port == "" {
 		port = "8080"
 	}
+
 	r.Run(":" + port)
 }

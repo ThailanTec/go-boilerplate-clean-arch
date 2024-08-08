@@ -1,9 +1,9 @@
 package routes
 
 import (
-	"github.com/ThailanTec/challenger/pousada/handlers"
-	"github.com/ThailanTec/challenger/pousada/repositories"
-	"github.com/ThailanTec/challenger/pousada/usecases"
+	"github.com/ThailanTec/challenger/pousada/infra/repositories"
+	"github.com/ThailanTec/challenger/pousada/src/handlers"
+	"github.com/ThailanTec/challenger/pousada/src/usecases"
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
 )

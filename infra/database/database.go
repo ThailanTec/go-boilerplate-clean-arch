@@ -2,7 +2,7 @@ package database
 
 import (
 	"fmt"
-	"github.com/ThailanTec/challenger/pousada/config"
+	"github.com/ThailanTec/challenger/pousada/src/config"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )

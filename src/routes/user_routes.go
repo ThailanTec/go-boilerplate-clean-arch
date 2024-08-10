@@ -16,5 +16,9 @@ func RegisterRoutes(r *gin.Engine, db *gorm.DB) {
 	userRoutes := r.Group("/users")
 	{
 		userRoutes.POST("", userHandler.CreateUser)
+		userRoutes.GET("", userHandler.GetUser)
+		userRoutes.GET(":document", userHandler.GetUserByDocument)
+		userRoutes.DELETE(":id", userHandler.DeleteUser)
+		userRoutes.PUT(":id", userHandler.UpdateUser)
 	}
 }

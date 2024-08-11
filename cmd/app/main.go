@@ -28,7 +28,7 @@ func main() {
 
 	// Configurar Gin
 	r := gin.Default()
-	routes.RegisterRoutes(r, db)
+	routes.RegisterRoutes(r, db, cfg)
 
 	// Iniciar servidor
 	port := os.Getenv("PORT")

@@ -2,6 +2,7 @@ package usecases
 
 import (
 	"errors"
+	"fmt"
 	"github.com/ThailanTec/challenger/pousada/domain"
 	"github.com/ThailanTec/challenger/pousada/infra/auth"
 	"github.com/ThailanTec/challenger/pousada/infra/repositories"
@@ -40,7 +41,8 @@ func (u *AuthUsecase) ValidateToken(token string) (*domain.User, error) {
 		return nil, err
 	}
 	// TODO: implementar lógica correta
-	user, err := u.userRepo.GetUserByData(claims.UserID.String())
+	user, err := u.userRepo.GetUserByID(claims.UserID)
+	fmt.Println(claims.UserID)
 	if err != nil {
 		return nil, err
 	}

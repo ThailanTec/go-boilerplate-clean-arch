@@ -32,5 +32,6 @@ func LoadConfig() Config {
 		DBPort:               viper.GetString("DB_PORT"),
 	}
 
+	log.Printf("Loaded config: %+v", config)
 	return config
 }

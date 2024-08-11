@@ -48,7 +48,8 @@ func ValidateJWT(tokenString string, cfg config.Config) (*Claims, error) {
 }
 
 func ParseToken(tokenString string) (*jwt.Token, error) {
-	cfg := config.Config{}
+	cfg := &config.Config{}
+	println(cfg.JWTSecret)
 	return jwt.Parse(tokenString, func(token *jwt.Token) (interface{}, error) {
 		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
 			return nil, jwt.NewValidationError("Invalid signing method", jwt.ValidationErrorSignatureInvalid)

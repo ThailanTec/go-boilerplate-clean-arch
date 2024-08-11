@@ -14,6 +14,7 @@ type UserRepository interface {
 	GetUserByData(document string) (*domain.User, error)
 	DeleteUser(id uuid.UUID) error
 	UpdateUser(id uuid.UUID, user *domain.User) (*domain.User, error)
+	GetUserByID(id uuid.UUID) (*domain.User, error)
 }
 
 type userRepository struct {
@@ -40,7 +41,18 @@ func (repo *userRepository) GetUserByData(document string) (*domain.User, error)
 	result := repo.db.Where("document = ?", document).First(&user)
 
 	if errors.Is(result.Error, gorm.ErrRecordNotFound) {
-		return nil, nil // Nenhum usuário encontrado
+		return nil, nil
+	}
+
+	return &user, result.Error
+}
+
+func (repo *userRepository) GetUserByID(id uuid.UUID) (*domain.User, error) {
+	var user domain.User
+	result := repo.db.Where("id = ?", id).First(&user)
+
+	if errors.Is(result.Error, gorm.ErrRecordNotFound) {
+		return nil, nil
 	}
 
 	return &user, result.Error

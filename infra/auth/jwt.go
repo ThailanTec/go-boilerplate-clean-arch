@@ -4,6 +4,7 @@ import (
 	"github.com/ThailanTec/challenger/pousada/src/config"
 	"github.com/dgrijalva/jwt-go"
 	"github.com/google/uuid"
+	"github.com/spf13/viper"
 	"time"
 )
 
@@ -48,12 +49,11 @@ func ValidateJWT(tokenString string, cfg config.Config) (*Claims, error) {
 }
 
 func ParseToken(tokenString string) (*jwt.Token, error) {
-	cfg := &config.Config{}
-	println(cfg.JWTSecret)
 	return jwt.Parse(tokenString, func(token *jwt.Token) (interface{}, error) {
 		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
 			return nil, jwt.NewValidationError("Invalid signing method", jwt.ValidationErrorSignatureInvalid)
 		}
-		return []byte(cfg.JWTSecret), nil
+		secret := viper.GetString("JWTSecret")
+		return []byte(secret), nil
 	})
 }

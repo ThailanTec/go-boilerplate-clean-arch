@@ -1,10 +1,11 @@
 package middleware
 
 import (
-	"github.com/ThailanTec/challenger/pousada/infra/auth"
-	"github.com/gin-gonic/gin"
 	"net/http"
 	"strings"
+
+	"github.com/ThailanTec/challenger/pousada/infra/auth"
+	"github.com/gin-gonic/gin"
 )
 
 func JWTAuthMiddleware() gin.HandlerFunc {

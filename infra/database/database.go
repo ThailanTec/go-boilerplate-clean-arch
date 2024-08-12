@@ -2,6 +2,8 @@ package database
 
 import (
 	"fmt"
+	"github.com/ThailanTec/challenger/pousada/domain"
+
 	"github.com/ThailanTec/challenger/pousada/src/config"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
@@ -12,7 +14,7 @@ func Initialize(cfg config.Config) (*gorm.DB, error) {
 		cfg.DBHost, cfg.DBUsername, cfg.DBPassword, cfg.DBName, cfg.DBPort)
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
-		return nil, err
+		return nil, domain.ErrDatabaseConnectionFailed
 	}
 
 	return db, nil

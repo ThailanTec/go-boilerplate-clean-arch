@@ -41,7 +41,7 @@ func (repo *userRepository) GetUserByData(document string) (*domain.User, error)
 	result := repo.db.Where("document = ?", document).First(&user)
 
 	if errors.Is(result.Error, gorm.ErrRecordNotFound) {
-		return nil, nil
+		return nil, domain.ErrGetUserByData
 	}
 
 	return &user, result.Error
@@ -52,7 +52,7 @@ func (repo *userRepository) GetUserByID(id uuid.UUID) (*domain.User, error) {
 	result := repo.db.Where("id = ?", id).First(&user)
 
 	if errors.Is(result.Error, gorm.ErrRecordNotFound) {
-		return nil, nil
+		return nil, domain.ErrIDNotFound
 	}
 
 	return &user, result.Error
@@ -80,7 +80,7 @@ func (repo *userRepository) UpdateUser(id uuid.UUID, user *domain.User) (*domain
 
 	if req.RowsAffected == 0 {
 		tx.Rollback()
-		return nil, errors.New("user not updated")
+		return nil, errors.New("err to update a user")
 	}
 
 	if err := tx.Commit().Error; err != nil {

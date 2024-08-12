@@ -1,10 +1,11 @@
 package handler
 
 import (
+	"net/http"
+
 	"github.com/ThailanTec/challenger/pousada/src/dto"
 	"github.com/ThailanTec/challenger/pousada/src/usecases"
 	"github.com/gin-gonic/gin"
-	"net/http"
 )
 
 type AuthHandler struct {

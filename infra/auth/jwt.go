@@ -1,11 +1,12 @@
 package auth
 
 import (
+	"time"
+
 	"github.com/ThailanTec/challenger/pousada/src/config"
 	"github.com/dgrijalva/jwt-go"
 	"github.com/google/uuid"
 	"github.com/spf13/viper"
-	"time"
 )
 
 type Claims struct {
@@ -33,7 +34,7 @@ func GenerateJWT(userID uuid.UUID, cfg config.Config) (string, error) {
 
 func ValidateJWT(tokenString string, cfg config.Config) (*Claims, error) {
 	claims := &Claims{}
-	token, err := jwt.ParseWithClaims(tokenString, claims, func(token *jwt.Token) (interface{}, error) {
+	token, err := jwt.ParseWithClaims(tokenString, claims, func(_ *jwt.Token) (interface{}, error) {
 		return []byte(cfg.JWTSecret), nil
 	})
 

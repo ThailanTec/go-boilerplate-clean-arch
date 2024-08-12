@@ -1,13 +1,14 @@
 package main
 
 import (
+	"log"
+	"os"
+
 	"github.com/ThailanTec/challenger/pousada/infra/database"
 	"github.com/ThailanTec/challenger/pousada/infra/database/migrations"
 	"github.com/ThailanTec/challenger/pousada/src/config"
 	"github.com/ThailanTec/challenger/pousada/src/routes"
 	"github.com/gin-gonic/gin"
-	"log"
-	"os"
 )
 
 func main() {

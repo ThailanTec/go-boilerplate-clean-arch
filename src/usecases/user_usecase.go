@@ -4,6 +4,7 @@ import (
 	"github.com/ThailanTec/challenger/pousada/domain"
 	"github.com/ThailanTec/challenger/pousada/infra/repositories"
 	"github.com/ThailanTec/challenger/pousada/src/dto"
+	"github.com/go-playground/validator/v10"
 	"github.com/google/uuid"
 )
 
@@ -17,13 +18,20 @@ type UserUsecase interface {
 
 type userUsecase struct {
 	userRepo repositories.UserRepository
+	validate *validator.Validate
 }
 
 func NewUserUsecase(ur repositories.UserRepository) UserUsecase {
-	return &userUsecase{userRepo: ur}
+	return &userUsecase{userRepo: ur,
+		validate: validator.New()}
 }
 
 func (uc *userUsecase) CreateUser(userDTO *dto.UserDTO) (*domain.User, error) {
+	err := uc.validate.Struct(userDTO)
+	if err != nil {
+		return nil, err
+	}
+
 	user, err := domain.NewUser(userDTO)
 	if err != nil {
 		return nil, err
@@ -45,7 +53,9 @@ func (uc *userUsecase) GetUsers() ([]*domain.User, error) {
 
 func (uc *userUsecase) GetUserByDocument(document string) (*domain.User, error) {
 	users, err := uc.userRepo.GetUserByData(document)
-
+	if err != nil {
+		return nil, err
+	}
 	return users, err
 }
 

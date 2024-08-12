@@ -1,12 +1,13 @@
 package handler
 
 import (
+	"net/http"
+
 	"github.com/ThailanTec/challenger/pousada/domain"
 	"github.com/ThailanTec/challenger/pousada/src/dto"
 	"github.com/ThailanTec/challenger/pousada/src/usecases"
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
-	"net/http"
 )
 
 type UserHandler struct {

@@ -1,11 +1,13 @@
 package dto
 
-import "github.com/google/uuid"
+import (
+	"github.com/google/uuid"
+)
 
 type UserDTO struct {
-	Name     string `json:"name" binding:"required"`
-	Phone    string `json:"phone" binding:"required"`
-	Document string `json:"document" binding:"required"`
+	Name     string `json:"name" validate:"required"`
+	Phone    string `json:"phone" validate:"required"`
+	Document string `json:"document" validate:"required"`
 }
 
 type UserResponseDTO struct {

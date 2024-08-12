@@ -1,10 +1,11 @@
 package domain
 
 import (
+	"time"
+
 	"github.com/ThailanTec/challenger/pousada/src/dto"
 	"github.com/google/uuid"
 	"gorm.io/gorm"
-	"time"
 )
 
 type User struct {

@@ -9,9 +9,9 @@ linters:
     - gocyclo
     - gofmt
     - goimports
-    - golint
+    - revive
     - unparam
-    - deadcode
+    - unused
 
 issues:
   exclude-rules:

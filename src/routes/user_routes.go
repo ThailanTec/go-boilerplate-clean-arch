@@ -3,7 +3,7 @@ package routes
 import (
 	"github.com/ThailanTec/challenger/pousada/infra/repositories"
 	"github.com/ThailanTec/challenger/pousada/src/config"
-	"github.com/ThailanTec/challenger/pousada/src/handlers"
+	handler "github.com/ThailanTec/challenger/pousada/src/handlers"
 	"github.com/ThailanTec/challenger/pousada/src/middleware"
 	"github.com/ThailanTec/challenger/pousada/src/usecases"
 	"github.com/gin-gonic/gin"

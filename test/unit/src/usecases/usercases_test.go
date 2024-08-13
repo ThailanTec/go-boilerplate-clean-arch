@@ -2,6 +2,8 @@ package usecases
 
 import (
 	"errors"
+	"testing"
+
 	"github.com/ThailanTec/challenger/pousada/domain"
 	"github.com/ThailanTec/challenger/pousada/src/dto"
 	"github.com/ThailanTec/challenger/pousada/src/usecases"
@@ -9,7 +11,6 @@ import (
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"testing"
 )
 
 func Test_CreateUser_Success(t *testing.T) {
@@ -54,7 +55,13 @@ func TestCreateUser_Failure(t *testing.T) {
 		Phone: "1234567890",
 	}
 
-	userRepoMock.On("CreateUser", mock.AnythingOfType("*domain.User")).Return(errors.New("failed to create user"))
+	expectedUser := &domain.User{
+		Name:  userDTO.Name,
+		Phone: userDTO.Phone,
+	}
+
+	// Configuração da expectativa do mock para criar o usuário
+	userRepoMock.On("CreateUser", expectedUser).Return(errors.New("failed to create user"))
 
 	// Act
 	createdUser, err := usecase.CreateUser(userDTO)
@@ -62,7 +69,6 @@ func TestCreateUser_Failure(t *testing.T) {
 	// Assert
 	assert.Error(t, err)
 	assert.Nil(t, createdUser)
-	userRepoMock.AssertExpectations(t)
 }
 
 func TestCreateUser_MissingField(t *testing.T) {

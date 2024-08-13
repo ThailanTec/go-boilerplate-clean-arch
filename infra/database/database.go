@@ -2,6 +2,7 @@ package database
 
 import (
 	"fmt"
+
 	"github.com/ThailanTec/challenger/pousada/domain"
 
 	"github.com/ThailanTec/challenger/pousada/src/config"

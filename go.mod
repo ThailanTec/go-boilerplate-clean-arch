@@ -5,9 +5,12 @@ go 1.22.5
 require (
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/gin-gonic/gin v1.10.0
+	github.com/go-playground/validator/v10 v10.22.0
+	github.com/golang/mock v1.6.0
 	github.com/google/uuid v1.6.0
 	github.com/spf13/viper v1.19.0
 	github.com/stretchr/testify v1.9.0
+	go.uber.org/zap v1.21.0
 	gorm.io/driver/postgres v1.5.9
 	gorm.io/gorm v1.25.11
 )
@@ -23,15 +26,12 @@ require (
 	github.com/gin-contrib/sse v0.1.0 // indirect
 	github.com/go-playground/locales v0.14.1 // indirect
 	github.com/go-playground/universal-translator v0.18.1 // indirect
-	github.com/go-playground/validator/v10 v10.22.0 // indirect
 	github.com/goccy/go-json v0.10.3 // indirect
-	github.com/golang/mock v1.6.0 // indirect
 	github.com/hashicorp/hcl v1.0.0 // indirect
 	github.com/jackc/pgpassfile v1.0.0 // indirect
 	github.com/jackc/pgservicefile v0.0.0-20221227161230-091c0ba34f0a // indirect
 	github.com/jackc/pgx/v5 v5.5.5 // indirect
 	github.com/jackc/puddle/v2 v2.2.1 // indirect
-	github.com/jinzhu/gorm v1.9.16 // indirect
 	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/jinzhu/now v1.1.5 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect

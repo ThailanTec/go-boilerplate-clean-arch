@@ -13,6 +13,10 @@ import (
 
 func main() {
 	cfg := config.LoadConfig()
+	logger, err := config.InitLogger()
+	if err != nil {
+		log.Fatalf("Failed To init a logger", err)
+	}
 
 	db, err := database.Initialize(cfg)
 	if err != nil {
@@ -25,15 +29,15 @@ func main() {
 	}
 
 	r := gin.Default()
-	routes.RegisterRoutes(r, db, cfg)
+	routes.RegisterRoutes(r, db, cfg, logger)
 
 	port := os.Getenv("PORT")
-	println(port)
 	if port == "" {
 		port = "8080"
 	}
 
 	err = r.Run(":" + port)
+	logger.Info("Aplicação iniciada na porta: " + port)
 	if err != nil {
 		return
 	}

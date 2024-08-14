@@ -7,13 +7,14 @@ import (
 	"github.com/ThailanTec/challenger/pousada/src/middleware"
 	"github.com/ThailanTec/challenger/pousada/src/usecases"
 	"github.com/gin-gonic/gin"
+	"go.uber.org/zap"
 	"gorm.io/gorm"
 )
 
-func RegisterRoutes(r *gin.Engine, db *gorm.DB, cfg config.Config) {
+func RegisterRoutes(r *gin.Engine, db *gorm.DB, cfg config.Config, logger *zap.Logger) {
 	userRepo := repositories.NewUserRepository(db)
 	userUsecase := usecases.NewUserUsecase(userRepo)
-	userHandler := handler.NewUserHandler(userUsecase)
+	userHandler := handler.NewUserHandler(userUsecase, logger)
 	authUsecase := usecases.NewAuthUsecase(userRepo, cfg)
 	authHandler := handler.NewAuthHandler(authUsecase)
 

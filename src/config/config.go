@@ -1,9 +1,9 @@
 package config
 
 import (
-	"log"
-
 	"github.com/spf13/viper"
+	"log"
+	"time"
 )
 
 type Config struct {
@@ -14,6 +14,10 @@ type Config struct {
 	DBName               string
 	DBHost               string
 	DBPort               string
+	RedisADR             string
+	RedisPassword        string
+	RedisDB              int
+	RedisTLL             time.Duration
 }
 
 func LoadConfig() Config {
@@ -31,6 +35,10 @@ func LoadConfig() Config {
 		DBName:               viper.GetString("DB_NAME"),
 		DBHost:               viper.GetString("DB_HOST"),
 		DBPort:               viper.GetString("DB_PORT"),
+		RedisADR:             viper.GetString("REDIS_ADR"),
+		RedisPassword:        viper.GetString("REDIS_PASSWORD"),
+		RedisDB:              viper.GetInt("REDIS_DB"),
+		RedisTLL:             viper.GetDuration("REDIS_TLL"),
 	}
 
 	return config

@@ -18,10 +18,12 @@ func main() {
 		log.Fatalf("Failed To init a logger", err)
 	}
 
-	db, err := database.Initialize(cfg)
+	db, err := database.PostgresClient(cfg)
 	if err != nil {
 		log.Fatalf("Failed to connect to database: %v", err)
 	}
+
+	redis := database.RedisClient(cfg)
 
 	err = migrations.Migrate(db)
 	if err != nil {
@@ -29,7 +31,7 @@ func main() {
 	}
 
 	r := gin.Default()
-	routes.RegisterRoutes(r, db, cfg, logger)
+	routes.RegisterRoutes(r, db, redis, cfg, logger)
 
 	port := os.Getenv("PORT")
 	if port == "" {

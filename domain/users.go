@@ -5,17 +5,16 @@ import (
 
 	"github.com/ThailanTec/challenger/pousada/src/dto"
 	"github.com/google/uuid"
-	"gorm.io/gorm"
 )
 
 type User struct {
-	ID        uuid.UUID
-	Name      string
-	Phone     string
-	Document  string
-	CreatedAt time.Time
-	UpdatedAt time.Time
-	DeletedAt gorm.DeletedAt
+	ID        uuid.UUID `db:"id"`
+	Name      string    `db:"name"`
+	Phone     string    `db:"phone"`
+	Document  string    `db:"document"`
+	CreatedAt time.Time `db:"created_at"`
+	UpdatedAt time.Time `db:"updated_at"`
+	DeletedAt time.Time `db:"deleted_at"`
 }
 
 func NewUser(user *dto.UserDTO) (*User, error) {
@@ -25,7 +24,6 @@ func NewUser(user *dto.UserDTO) (*User, error) {
 		Phone:     user.Phone,
 		Document:  user.Document,
 		CreatedAt: time.Now(),
-		UpdatedAt: time.Now(),
 	}, nil
 }
 

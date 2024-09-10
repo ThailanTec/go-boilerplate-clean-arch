@@ -2,20 +2,19 @@ package database
 
 import (
 	"fmt"
-
-	"github.com/ThailanTec/challenger/pousada/domain"
+	"github.com/jmoiron/sqlx"
+	"log"
 
 	"github.com/ThailanTec/challenger/pousada/src/config"
-	"gorm.io/driver/postgres"
-	"gorm.io/gorm"
 )
 
-func PostgresClient(cfg config.Config) (*gorm.DB, error) {
+func PostgresClient(cfg config.Config) (*sqlx.DB, error) {
 	dsn := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=disable",
 		cfg.DBHost, cfg.DBUsername, cfg.DBPassword, cfg.DBName, cfg.DBPort)
-	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
+	db, err := sqlx.Open("postgres", dsn)
 	if err != nil {
-		return nil, domain.ErrDatabaseConnectionFailed
+		log.Println("Erro ao conectar no banco de dados:", err)
+		return nil, err
 	}
 
 	return db, nil

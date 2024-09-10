@@ -25,7 +25,7 @@ func main() {
 
 	redis := database.RedisClient(cfg)
 
-	err = migrations.Migrate(db)
+	err = migrations.Migrations(db)
 	if err != nil {
 		log.Fatalf("Failed to migrate database: %v", err)
 	}
